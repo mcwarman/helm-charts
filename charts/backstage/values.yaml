@@ -1,0 +1,277 @@
+# Default values for backstage.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Override the name of the chart.
+nameOverride: ""
+# -- Override the fullname of the chart.
+fullnameOverride: ""
+
+frontend:
+  image:
+    # -- Frontend image repository.
+    repository: ghcr.io/mcwarman/backstage-sample-app/app
+    # -- Frontend image tag @default -- `{{ .Chart.AppVersion }}`
+    tag: ""
+    # -- Frontend image pull policy.
+    pullPolicy: IfNotPresent
+    # -- Frontend image pull secrets.
+    pullSecrets: []
+
+  serviceAccount:
+    # -- Frontend if `true`, create a new service account.
+    create: true
+    # -- Frontend annotations to add to the service account
+    annotations: {}
+    # -- Frontend service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template.
+    name: ""
+
+  autoscaling:
+    # -- Frontend if `true`, create a HPA for the deployment.
+    enabled: false
+    # -- Frontend minimum number of pod replicas.
+    minReplicas: 1
+    # -- Frontend maximum number of pod replicas.
+    maxReplicas: 3
+    # -- Frontend target CPU utilisation for the pod.
+    targetCPUUtilizationPercentage: 60
+    # -- Frontend target memory utilisation for the pod.
+    targetMemoryUtilizationPercentage:
+
+  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  podDisruptionBudget:
+    # -- Frontend if `true`, create a PDB for the deployment.
+    enabled: false
+    # -- (int) Frontend set the PDB minimum available pods.
+    minAvailable:
+    # -- (int) Frontend set the PDB maximum unavailable pods.
+    maxUnavailable:
+
+  # -- Frontend annotations to add to the pod.
+  podAnnotations: {}
+
+  # -- Frontend labels to add to the pod.
+  podLabels: {}
+
+  # -- Frontend security context for the container.
+  securityContext: {}
+
+  # -- Frontend security context for the pod.
+  podSecurityContext: {}
+
+  # -- Frontend priority class name to use.
+  priorityClassName: ""
+
+  # --  The liveness probe.
+  # @default -- see values.yaml
+  livenessProbe:
+    httpGet:
+      path: /healthcheck
+      port: http
+
+  # -- Frontend the readiness probe.
+  # @default -- see values.yaml
+  readinessProbe:
+    httpGet:
+      path: /healthcheck
+      port: http
+
+  service:
+    # -- Frontend service type.
+    type: ClusterIP
+    # -- Frontend annotations to add to the service.
+    annotations: {}
+    # --  Service port.
+    port: 80
+
+  ingress:
+    # -- Frontend if `true`, create an ingress object.
+    enabled: false
+    # --  Ingress annotations.
+    annotations: {}
+    # -- Frontend ingress class to use.
+    ingressClassName: ""
+    # -- Frontend ingress hosts.
+    hosts: []
+    # -- Frontend ingress TLS configuration
+    tls: []
+
+  # -- Frontend resource requests and limits for the clamav container.
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 100m
+  #     memory: 128Mi
+
+  # -- Frontend number of replicas to create.
+  replicaCount: 1
+
+  # -- Frontend node labels for pod assignment.
+  nodeSelector: {}
+
+  # -- Frontend tolerations for pod assignment.
+  tolerations: []
+
+  # -- Frontend affinity for pod assignment.
+  affinity: {}
+
+backend:
+  image:
+    # -- Backend image repository.
+    repository: ghcr.io/mcwarman/backstage-sample-app/backend
+    # -- Backend image tag @default -- `{{ .Chart.AppVersion }}`
+    tag: ""
+    # -- Backend image pull policy.
+    pullPolicy: IfNotPresent
+    # -- Backend image pull secrets.
+    pullSecrets: []
+
+
+  serviceAccount:
+    # -- Backend if `true`, create a new service account.
+    create: true
+    # -- Backend annotations to add to the service account
+    annotations: {}
+    # -- Backend service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template.
+    name: ""
+
+  autoscaling:
+    # -- Backend if `true`, create a HPA for the deployment.
+    enabled: false
+    # -- Backend minimum number of pod replicas.
+    minReplicas: 1
+    # -- Backend maximum number of pod replicas.
+    maxReplicas: 3
+    # -- Backend target CPU utilisation for the pod.
+    targetCPUUtilizationPercentage: 60
+    # -- Backend target memory utilisation for the pod.
+    targetMemoryUtilizationPercentage:
+
+  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  podDisruptionBudget:
+    # -- Backend if `true`, create a PDB for the deployment.
+    enabled: false
+    # -- (int) Backend set the PDB minimum available pods.
+    minAvailable:
+    # -- (int) Backend set the PDB maximum unavailable pods.
+    maxUnavailable:
+
+  # -- Backend annotations to add to the pod.
+  podAnnotations: {}
+
+  # -- Backend labels to add to the pod.
+  podLabels: {}
+
+  # -- Backend security context for the container.
+  securityContext: {}
+
+  # -- Backend security context for the pod.
+  podSecurityContext: {}
+
+  # -- Backend priority class name to use.
+  priorityClassName: ""
+
+  # --  The liveness probe.
+  # @default -- see values.yaml
+  livenessProbe:
+    httpGet:
+      path: /healthcheck
+      port: http
+
+  # -- Backend the readiness probe.
+  # @default -- see values.yaml
+  readinessProbe:
+    httpGet:
+      path: /healthcheck
+      port: http
+
+  service:
+    # -- Backend service type.
+    type: ClusterIP
+    # -- Backend annotations to add to the service.
+    annotations: {}
+    # --  Service port.
+    port: 80
+
+  ingress:
+    # -- Backend if `true`, create an ingress object.
+    enabled: false
+    # --  Ingress annotations.
+    annotations: {}
+    # -- Backend ingress class to use.
+    ingressClassName: ""
+    # -- Backend ingress hosts.
+    hosts: []
+    # -- Backend ingress TLS configuration
+    tls: []
+
+  # -- Backend resource requests and limits for the clamav container.
+  resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+  #   limits:
+  #     cpu: 100m
+  #     memory: 128Mi
+
+  # -- Backend number of replicas to create.
+  replicaCount: 1
+
+  # -- Backend node labels for pod assignment.
+  nodeSelector: {}
+
+  # -- Backend tolerations for pod assignment.
+  tolerations: []
+
+  # -- Backend affinity for pod assignment.
+  affinity: {}
+
+# -- Settings are only required if you wish to use an existing postgresql instance
+psql:
+  # host: postgresdb.local
+  # port: 5432
+  # database: backstage
+  # username: backstage
+  # password:
+  #   secret: backstage-postgres
+  #   key: password
+
+# -- Configuration values for the postgresql dependency, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql).
+postgresql:
+  enabled: false
+
+# -- Backstage application config, [reference](https://backstage.io/docs/conf/writing).
+# @default -- see values.yaml
+appConfig:
+  app:
+    title: Scaffoled Backstage App
+    baseUrl: http://localhost:8080
+  organization: {}
+  backend:
+    baseUrl: http://localhost:7007
+    listen:
+      port: 7007
+    cors:
+      origin: http://localhost:8080
+      methods: [GET, POST, PUT, DELETE]
+      credentials: true
+    database:
+      client: pg
+      ## Environment variables provide based on postgresql or psql.
+      connection:
+        host: ${POSTGRES_HOST}
+        port: ${POSTGRES_PORT}
+        user: ${POSTGRES_USER}
+        password: ${POSTGRES_PASSWORD}
+  techdocs:
+    builder: external

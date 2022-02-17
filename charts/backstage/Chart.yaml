@@ -1,0 +1,22 @@
+apiVersion: v2
+name: backstage
+description: Helm chart for Backstage.
+type: application
+version: 0.1.0
+appVersion: main
+keywords:
+  - backstage
+home: https://backstage.io
+icon: https://backstage.io/img/twitter-summary.png
+sources:
+  - https://github.com/backstage/backstage
+  - https://github.com/mcwarman/backstage-sample-app
+  - https://github.com/mcwarman/helm-charts
+maintainers:
+  - name: mcwarman
+    email: mcwarman@gmail.com
+dependencies:
+  - name: postgresql
+    version: 11.0.4
+    repository: https://charts.bitnami.com/bitnami/
+    condition: postgresql.enabled
