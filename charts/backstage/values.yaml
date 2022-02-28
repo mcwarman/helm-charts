@@ -246,8 +246,8 @@ psql:
   #   secret: backstage-postgres
   #   key: password
 
-# -- Configuration values for the postgresql dependency, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql).
 postgresql:
+   # -- If `true`, executes subchart PostgreSQL from Bitnami, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql).
   enabled: false
 
 # -- Backstage application config, [reference](https://backstage.io/docs/conf/writing).

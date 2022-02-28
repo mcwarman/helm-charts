@@ -103,7 +103,7 @@ The following table lists the configurable parameters of the _backstage_ chart a
 | backend.tolerations | list | `[]` | Backend tolerations for pod assignment. |
 | backend.affinity | object | `{}` | Backend affinity for pod assignment. |
 | psql | string | `nil` | Settings are only required if you wish to use an existing postgresql instance |
-| postgresql | object | `{"enabled":false}` | Configuration values for the postgresql dependency, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql). |
+| postgresql.enabled | bool | `false` | If `true`, executes subchart PostgreSQL from Bitnami, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql). |
 | appConfig | object | see values.yaml | Backstage application config, [reference](https://backstage.io/docs/conf/writing). |
 
 ----------------------------------------------
