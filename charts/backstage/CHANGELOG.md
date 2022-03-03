@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v0.1.0 - 2021-09-09
+## v0.2.0 - 2022-03-03
+
+### Changed
+
+- Fix `psql.port` deployment env quoting.
+
+## v0.1.0 - 2022-02-28
 
 ### Added
 

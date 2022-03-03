@@ -62,7 +62,7 @@ spec:
             - name: POSTGRES_HOST
               value: {{ .Values.psql.host | quote }}
             - name: POSTGRES_PORT
-              value: {{ .Values.psql.port | default "5432" }}
+              value: {{ .Values.psql.port | default "5432" | quote }}
             - name: POSTGRES_USER
               value: {{ .Values.psql.username | quote }}
             - name: POSTGRES_PASSWORD
