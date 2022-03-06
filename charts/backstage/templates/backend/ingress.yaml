@@ -8,7 +8,7 @@ kind: Ingress
 metadata:
   name: {{ $serviceName }}
   labels:
-    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "backstage.backendLabels" . | nindent 4 }}
   {{- with .Values.backend.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

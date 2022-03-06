@@ -1,8 +1,8 @@
 apiVersion: v2
 name: backstage
-description: Helm chart for Backstage.
+description: Helm chart for Backstage. Backstage is an open platform for building developer portals.
 type: application
-version: 0.2.0
+version: 0.3.0
 appVersion: main
 keywords:
   - backstage

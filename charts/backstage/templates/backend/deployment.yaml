@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "backstage.backendFullname" . }}
   labels:
-    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "backstage.backendLabels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.backend.replicaCount }}
   selector:
