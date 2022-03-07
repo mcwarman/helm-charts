@@ -11,13 +11,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## v0.3.0
+## v0.5.0 - 2022-03-07
 
-## Added
+### Changed
+
+- Set additional environment variables via `env`
+
+## v0.4.0 - 2022-03-07
+
+### Changed
+
+- Renamed from `frontend` to `app`
+
+## v0.3.0 - 2022-03-07
+
+### Added
 
 - Introduced `helm unittest`
 
-## Changed
+### Changed
 
 - Fixed labelling
 - Fixed pdb version
