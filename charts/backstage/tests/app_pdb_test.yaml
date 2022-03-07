@@ -1,11 +1,11 @@
-suite: test frontend pdb
+suite: test app pdb
 templates:
-  - ./frontend/pdb.yaml
+  - ./app/pdb.yaml
 tests:
 
   - it: should work if 1.21 with policy/v1
     set:
-      frontend.podDisruptionBudget.enabled: true
+      app.podDisruptionBudget.enabled: true
     capabilities:
       majorVersion: 1
       minorVersion: 21
@@ -21,7 +21,7 @@ tests:
       - equal:
           path: spec.selector.matchLabels
           value:
-            app.kubernetes.io/component: frontend
+            app.kubernetes.io/component: app
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: backstage
       - isNull:
@@ -31,7 +31,7 @@ tests:
 
   - it: should work if 1.20 with policy/v1beta1
     set:
-      frontend.podDisruptionBudget.enabled: true
+      app.podDisruptionBudget.enabled: true
     capabilities:
       majorVersion: 1
       minorVersion: 20
@@ -47,7 +47,7 @@ tests:
       - equal:
           path: spec.selector.matchLabels
           value:
-            app.kubernetes.io/component: frontend
+            app.kubernetes.io/component: app
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: backstage
       - isNull:
@@ -57,8 +57,8 @@ tests:
 
   - it: should set minAvailable when provided
     set:
-      frontend.podDisruptionBudget.enabled: true
-      frontend.podDisruptionBudget.minAvailable: 1
+      app.podDisruptionBudget.enabled: true
+      app.podDisruptionBudget.minAvailable: 1
     asserts:
       - hasDocuments:
           count: 1
@@ -66,11 +66,11 @@ tests:
           of: PodDisruptionBudget
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - equal:
           path: spec.selector.matchLabels
           value:
-            app.kubernetes.io/component: frontend
+            app.kubernetes.io/component: app
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: backstage
       - equal:
@@ -81,8 +81,8 @@ tests:
 
   - it: should set maxUnavailable when provided
     set:
-      frontend.podDisruptionBudget.enabled: true
-      frontend.podDisruptionBudget.maxUnavailable: 2
+      app.podDisruptionBudget.enabled: true
+      app.podDisruptionBudget.maxUnavailable: 2
     asserts:
       - hasDocuments:
           count: 1
@@ -90,11 +90,11 @@ tests:
           of: PodDisruptionBudget
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - equal:
           path: spec.selector.matchLabels
           value:
-            app.kubernetes.io/component: frontend
+            app.kubernetes.io/component: app
             app.kubernetes.io/instance: RELEASE-NAME
             app.kubernetes.io/name: backstage
       - equal:
