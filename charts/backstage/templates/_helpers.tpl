@@ -73,7 +73,7 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/* Get PodDisruptionBudget API Version */}}
-{{- define "thanos.pdb.apiVersion" -}}
+{{- define "backstage.pdb.apiVersion" -}}
   {{- if and (.Capabilities.APIVersions.Has "policy/v1") (semverCompare ">= 1.21-0" .Capabilities.KubeVersion.Version) -}}
       {{- print "policy/v1" -}}
   {{- else -}}

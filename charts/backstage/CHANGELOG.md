@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
+## v0.3.0
+
+## Added
+
+- Introduced `helm unittest`
+
+## Changed
+
+- Fixed labelling
+- Fixed pdb version
+
 ## v0.2.0 - 2022-03-03
 
 ### Changed

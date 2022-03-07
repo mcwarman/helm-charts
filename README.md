@@ -6,7 +6,9 @@ These charts are provided as-is with no warranties.
 
 ## Charts
 
-The following charts are present in this repo.
+The following charts are present in this repo:
+
+- [Backstage](charts/backstage/)
 
 ## Usage
 

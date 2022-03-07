@@ -1,0 +1,35 @@
+{{- define "chart.header" -}}
+# {{ .Name | title }}
+{{- end -}}
+
+{{- define "chart.repoName" -}}
+mcwarman
+{{- end -}}
+
+{{- define "chart.repoURL" -}}
+https://{{ template "chart.repoName" . }}.github.io/helm-charts/
+{{- end -}}
+
+{{- define "chart.installingHeader" -}}
+## Installing the Chart
+{{- end -}}
+
+{{- define "chart.installingText" -}}
+Before you can install the chart you will need to add the `{{ template "chart.repoName" . }}` repo to [Helm](https://helm.sh/).
+
+```shell
+helm repo add {{ template "chart.repoName" . }} {{ template "chart.repoURL" . }}
+```
+
+After you've installed the repo you can install the chart.
+
+```shell
+helm upgrade --install --namespace default --values ./my-values.yaml my-release {{ template "chart.repoName" . }}/{{ template "chart.name" . }}
+```
+{{- end -}}
+
+{{- define "chart.installingSection" -}}
+{{ template "chart.installingHeader" . }}
+
+{{ template "chart.installingText" . }}
+{{- end -}}

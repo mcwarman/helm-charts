@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ template "backstage.backendConfigName" . }}
   labels:
-    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "backstage.backendLabels" . | nindent 4 }}
 data:
   app-config.yaml: |
     {{- .Values.appConfig | toYaml | nindent 4 }}

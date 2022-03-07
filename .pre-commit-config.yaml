@@ -5,3 +5,5 @@ repos:
       - id: helm-docs
         args:
           - --sort-values-order=file
+          - --template-files=./_helm-docs-templates.gotmpl
+          - --template-files=README.md.gotmpl

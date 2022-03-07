@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "backstage.backendFullname" . }}
   labels:
-    {{- include "backstage.labels" . | nindent 4 }}
+    {{- include "backstage.backendLabels" . | nindent 4 }}
   {{- with .Values.backend.service.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

@@ -87,7 +87,7 @@ frontend:
   ingress:
     # -- Frontend if `true`, create an ingress object.
     enabled: false
-    # --  Ingress annotations.
+    # -- Frontend ingress annotations.
     annotations: {}
     # -- Frontend ingress class to use.
     ingressClassName: ""
@@ -202,7 +202,7 @@ backend:
   ingress:
     # -- Backend if `true`, create an ingress object.
     enabled: false
-    # --  Ingress annotations.
+    # -- Backend ingress annotations.
     annotations: {}
     # -- Backend ingress class to use.
     ingressClassName: ""
@@ -258,7 +258,7 @@ appConfig:
     baseUrl: http://localhost:8080
   organization: {}
   backend:
-    baseUrl: http://localhost:7007
+    baseUrl: http://localhost:8080
     listen:
       port: 7007
     cors:

@@ -6,6 +6,14 @@ Fullname
 {{- end }}
 
 {{/*
+Common labels
+*/}}
+{{- define "backstage.backendLabels" -}}
+{{ include "backstage.labels" . }}
+app.kubernetes.io/component: backend
+{{- end }}
+
+{{/*
 Selector labels
 */}}
 {{- define "backstage.backendSelectorLabels" -}}
