@@ -1,11 +1,11 @@
-suite: test frontend ingress
+suite: test app ingress
 templates:
-  - ./frontend/ingress.yaml
+  - ./app/ingress.yaml
 tests:
   - it: should work if 1.19 with networking.k8s.io/v1
     set:
-      frontend.ingress.enabled: true
-      frontend.ingress.hosts: ["ingress.test"]
+      app.ingress.enabled: true
+      app.ingress.hosts: ["ingress.test"]
     capabilities:
       majorVersion: 1
       minorVersion: 19
@@ -20,7 +20,7 @@ tests:
           of: networking.k8s.io/v1
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - contains:
           path: spec.rules[0].http.paths
           content:
@@ -28,15 +28,15 @@ tests:
             pathType: Prefix
             backend:
               service:
-                name: RELEASE-NAME-backstage-frontend
+                name: RELEASE-NAME-backstage-app
                 port:
                   number: 80
       - isNull:
           path: spec.tls
   - it: should work if 1.19 with networking.k8s.io/v1beta1
     set:
-      frontend.ingress.enabled: true
-      frontend.ingress.hosts: ["ingress.test"]
+      app.ingress.enabled: true
+      app.ingress.hosts: ["ingress.test"]
     capabilities:
       majorVersion: 1
       minorVersion: 19
@@ -51,21 +51,21 @@ tests:
           of: networking.k8s.io/v1beta1
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - contains:
           path: spec.rules[0].http.paths
           content:
             path: /
             pathType: Prefix
             backend:
-              serviceName: RELEASE-NAME-backstage-frontend
+              serviceName: RELEASE-NAME-backstage-app
               servicePort: http
       - isNull:
           path: spec.tls
   - it: should work if 1.18 with extensions/v1beta1
     set:
-      frontend.ingress.enabled: true
-      frontend.ingress.hosts: ["ingress.test"]
+      app.ingress.enabled: true
+      app.ingress.hosts: ["ingress.test"]
     capabilities:
       majorVersion: 1
       minorVersion: 18
@@ -80,28 +80,28 @@ tests:
           of: extensions/v1beta1
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - contains:
           path: spec.rules[0].http.paths
           content:
             path: /
             backend:
-              serviceName: RELEASE-NAME-backstage-frontend
+              serviceName: RELEASE-NAME-backstage-app
               servicePort: http
       - isNull:
           path: spec.tls
 
   - it: should set tls if given
     set:
-      frontend.ingress.enabled: true
-      frontend.ingress.hosts: ["ingress.test"]
-      frontend.ingress.tls:
+      app.ingress.enabled: true
+      app.ingress.hosts: ["ingress.test"]
+      app.ingress.tls:
         - hosts: ["ingress.test"]
           secretName: my-tls-secret
     asserts:
       - equal:
           path: metadata.name
-          value: RELEASE-NAME-backstage-frontend
+          value: RELEASE-NAME-backstage-app
       - equal:
           path: spec.tls
           value:

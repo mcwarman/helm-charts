@@ -7,59 +7,59 @@ nameOverride: ""
 # -- Override the fullname of the chart.
 fullnameOverride: ""
 
-frontend:
+app:
   image:
-    # -- Frontend image repository.
+    # -- App image repository.
     repository: ghcr.io/mcwarman/backstage-sample-app/app
-    # -- Frontend image tag @default -- `{{ .Chart.AppVersion }}`
+    # -- App image tag @default -- `{{ .Chart.AppVersion }}`
     tag: ""
-    # -- Frontend image pull policy.
+    # -- App image pull policy.
     pullPolicy: IfNotPresent
-    # -- Frontend image pull secrets.
+    # -- App image pull secrets.
     pullSecrets: []
 
   serviceAccount:
-    # -- Frontend if `true`, create a new service account.
+    # -- App if `true`, create a new service account.
     create: true
-    # -- Frontend annotations to add to the service account
+    # -- App annotations to add to the service account
     annotations: {}
-    # -- Frontend service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template.
+    # -- App service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template.
     name: ""
 
   autoscaling:
-    # -- Frontend if `true`, create a HPA for the deployment.
+    # -- App if `true`, create a HPA for the deployment.
     enabled: false
-    # -- Frontend minimum number of pod replicas.
+    # -- App minimum number of pod replicas.
     minReplicas: 1
-    # -- Frontend maximum number of pod replicas.
+    # -- App maximum number of pod replicas.
     maxReplicas: 3
-    # -- Frontend target CPU utilisation for the pod.
+    # -- App target CPU utilisation for the pod.
     targetCPUUtilizationPercentage: 60
-    # -- Frontend target memory utilisation for the pod.
+    # -- App target memory utilisation for the pod.
     targetMemoryUtilizationPercentage:
 
   # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
   podDisruptionBudget:
-    # -- Frontend if `true`, create a PDB for the deployment.
+    # -- App if `true`, create a PDB for the deployment.
     enabled: false
-    # -- (int) Frontend set the PDB minimum available pods.
+    # -- (int) App set the PDB minimum available pods.
     minAvailable:
-    # -- (int) Frontend set the PDB maximum unavailable pods.
+    # -- (int) App set the PDB maximum unavailable pods.
     maxUnavailable:
 
-  # -- Frontend annotations to add to the pod.
+  # -- App annotations to add to the pod.
   podAnnotations: {}
 
-  # -- Frontend labels to add to the pod.
+  # -- App labels to add to the pod.
   podLabels: {}
 
-  # -- Frontend security context for the container.
+  # -- App security context for the container.
   securityContext: {}
 
-  # -- Frontend security context for the pod.
+  # -- App security context for the pod.
   podSecurityContext: {}
 
-  # -- Frontend priority class name to use.
+  # -- App priority class name to use.
   priorityClassName: ""
 
   # --  The liveness probe.
@@ -69,7 +69,7 @@ frontend:
       path: /healthcheck
       port: http
 
-  # -- Frontend the readiness probe.
+  # -- App the readiness probe.
   # @default -- see values.yaml
   readinessProbe:
     httpGet:
@@ -77,26 +77,26 @@ frontend:
       port: http
 
   service:
-    # -- Frontend service type.
+    # -- App service type.
     type: ClusterIP
-    # -- Frontend annotations to add to the service.
+    # -- App annotations to add to the service.
     annotations: {}
     # --  Service port.
     port: 80
 
   ingress:
-    # -- Frontend if `true`, create an ingress object.
+    # -- App if `true`, create an ingress object.
     enabled: false
-    # -- Frontend ingress annotations.
+    # -- App ingress annotations.
     annotations: {}
-    # -- Frontend ingress class to use.
+    # -- App ingress class to use.
     ingressClassName: ""
-    # -- Frontend ingress hosts.
+    # -- App ingress hosts.
     hosts: []
-    # -- Frontend ingress TLS configuration
+    # -- App ingress TLS configuration
     tls: []
 
-  # -- Frontend resource requests and limits for the clamav container.
+  # -- App resource requests and limits for the clamav container.
   resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -109,16 +109,16 @@ frontend:
   #     cpu: 100m
   #     memory: 128Mi
 
-  # -- Frontend number of replicas to create.
+  # -- App number of replicas to create.
   replicaCount: 1
 
-  # -- Frontend node labels for pod assignment.
+  # -- App node labels for pod assignment.
   nodeSelector: {}
 
-  # -- Frontend tolerations for pod assignment.
+  # -- App tolerations for pod assignment.
   tolerations: []
 
-  # -- Frontend affinity for pod assignment.
+  # -- App affinity for pod assignment.
   affinity: {}
 
 backend:

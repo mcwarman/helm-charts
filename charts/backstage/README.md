@@ -1,6 +1,6 @@
 # Backstage
 
-![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
+![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
 
 Helm chart for Backstage. Backstage is an open platform for building developer portals.
 
@@ -30,41 +30,41 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 |-----|------|---------|-------------|
 | nameOverride | string | `""` | Override the name of the chart. |
 | fullnameOverride | string | `""` | Override the fullname of the chart. |
-| frontend.image.repository | string | `"ghcr.io/mcwarman/backstage-sample-app/app"` | Frontend image repository. |
-| frontend.image.tag | string | `""` |  |
-| frontend.image.pullPolicy | string | `"IfNotPresent"` | Frontend image pull policy. |
-| frontend.image.pullSecrets | list | `[]` | Frontend image pull secrets. |
-| frontend.serviceAccount.create | bool | `true` | Frontend if `true`, create a new service account. |
-| frontend.serviceAccount.annotations | object | `{}` | Frontend annotations to add to the service account |
-| frontend.serviceAccount.name | string | `""` | Frontend service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template. |
-| frontend.autoscaling.enabled | bool | `false` | Frontend if `true`, create a HPA for the deployment. |
-| frontend.autoscaling.minReplicas | int | `1` | Frontend minimum number of pod replicas. |
-| frontend.autoscaling.maxReplicas | int | `3` | Frontend maximum number of pod replicas. |
-| frontend.autoscaling.targetCPUUtilizationPercentage | int | `60` | Frontend target CPU utilisation for the pod. |
-| frontend.autoscaling.targetMemoryUtilizationPercentage | string | `nil` | Frontend target memory utilisation for the pod. |
-| frontend.podDisruptionBudget.enabled | bool | `false` | Frontend if `true`, create a PDB for the deployment. |
-| frontend.podDisruptionBudget.minAvailable | int | `nil` | Frontend set the PDB minimum available pods. |
-| frontend.podDisruptionBudget.maxUnavailable | int | `nil` | Frontend set the PDB maximum unavailable pods. |
-| frontend.podAnnotations | object | `{}` | Frontend annotations to add to the pod. |
-| frontend.podLabels | object | `{}` | Frontend labels to add to the pod. |
-| frontend.securityContext | object | `{}` | Frontend security context for the container. |
-| frontend.podSecurityContext | object | `{}` | Frontend security context for the pod. |
-| frontend.priorityClassName | string | `""` | Frontend priority class name to use. |
-| frontend.livenessProbe | object | see values.yaml | The liveness probe. |
-| frontend.readinessProbe | object | see values.yaml | Frontend the readiness probe. |
-| frontend.service.type | string | `"ClusterIP"` | Frontend service type. |
-| frontend.service.annotations | object | `{}` | Frontend annotations to add to the service. |
-| frontend.service.port | int | `80` | Service port. |
-| frontend.ingress.enabled | bool | `false` | Frontend if `true`, create an ingress object. |
-| frontend.ingress.annotations | object | `{}` | Frontend ingress annotations. |
-| frontend.ingress.ingressClassName | string | `""` | Frontend ingress class to use. |
-| frontend.ingress.hosts | list | `[]` | Frontend ingress hosts. |
-| frontend.ingress.tls | list | `[]` | Frontend ingress TLS configuration |
-| frontend.resources | object | `{}` | Frontend resource requests and limits for the clamav container. |
-| frontend.replicaCount | int | `1` | Frontend number of replicas to create. |
-| frontend.nodeSelector | object | `{}` | Frontend node labels for pod assignment. |
-| frontend.tolerations | list | `[]` | Frontend tolerations for pod assignment. |
-| frontend.affinity | object | `{}` | Frontend affinity for pod assignment. |
+| app.image.repository | string | `"ghcr.io/mcwarman/backstage-sample-app/app"` | App image repository. |
+| app.image.tag | string | `""` |  |
+| app.image.pullPolicy | string | `"IfNotPresent"` | App image pull policy. |
+| app.image.pullSecrets | list | `[]` | App image pull secrets. |
+| app.serviceAccount.create | bool | `true` | App if `true`, create a new service account. |
+| app.serviceAccount.annotations | object | `{}` | App annotations to add to the service account |
+| app.serviceAccount.name | string | `""` | App service account to be used. If not set and serviceAccount.create is true, a name is generated using the full name template. |
+| app.autoscaling.enabled | bool | `false` | App if `true`, create a HPA for the deployment. |
+| app.autoscaling.minReplicas | int | `1` | App minimum number of pod replicas. |
+| app.autoscaling.maxReplicas | int | `3` | App maximum number of pod replicas. |
+| app.autoscaling.targetCPUUtilizationPercentage | int | `60` | App target CPU utilisation for the pod. |
+| app.autoscaling.targetMemoryUtilizationPercentage | string | `nil` | App target memory utilisation for the pod. |
+| app.podDisruptionBudget.enabled | bool | `false` | App if `true`, create a PDB for the deployment. |
+| app.podDisruptionBudget.minAvailable | int | `nil` | App set the PDB minimum available pods. |
+| app.podDisruptionBudget.maxUnavailable | int | `nil` | App set the PDB maximum unavailable pods. |
+| app.podAnnotations | object | `{}` | App annotations to add to the pod. |
+| app.podLabels | object | `{}` | App labels to add to the pod. |
+| app.securityContext | object | `{}` | App security context for the container. |
+| app.podSecurityContext | object | `{}` | App security context for the pod. |
+| app.priorityClassName | string | `""` | App priority class name to use. |
+| app.livenessProbe | object | see values.yaml | The liveness probe. |
+| app.readinessProbe | object | see values.yaml | App the readiness probe. |
+| app.service.type | string | `"ClusterIP"` | App service type. |
+| app.service.annotations | object | `{}` | App annotations to add to the service. |
+| app.service.port | int | `80` | Service port. |
+| app.ingress.enabled | bool | `false` | App if `true`, create an ingress object. |
+| app.ingress.annotations | object | `{}` | App ingress annotations. |
+| app.ingress.ingressClassName | string | `""` | App ingress class to use. |
+| app.ingress.hosts | list | `[]` | App ingress hosts. |
+| app.ingress.tls | list | `[]` | App ingress TLS configuration |
+| app.resources | object | `{}` | App resource requests and limits for the clamav container. |
+| app.replicaCount | int | `1` | App number of replicas to create. |
+| app.nodeSelector | object | `{}` | App node labels for pod assignment. |
+| app.tolerations | list | `[]` | App tolerations for pod assignment. |
+| app.affinity | object | `{}` | App affinity for pod assignment. |
 | backend.image.repository | string | `"ghcr.io/mcwarman/backstage-sample-app/backend"` | Backend image repository. |
 | backend.image.tag | string | `""` |  |
 | backend.image.pullPolicy | string | `"IfNotPresent"` | Backend image pull policy. |
@@ -105,4 +105,4 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 | appConfig | object | see values.yaml | Backstage application config, [reference](https://backstage.io/docs/conf/writing). |
 
 ----------------------------------------------
-Autogenerated from chart metadata using [helm-docs v1.7.0](https://github.com/norwoodj/helm-docs/releases/v1.7.0)
+Autogenerated from chart metadata using [helm-docs v1.5.0](https://github.com/norwoodj/helm-docs/releases/v1.5.0)
