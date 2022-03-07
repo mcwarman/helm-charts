@@ -121,6 +121,9 @@ app:
   # -- App affinity for pod assignment.
   affinity: {}
 
+  # -- Frontend environment variables for the container.
+  env: []
+
 backend:
   image:
     # -- Backend image repository.
@@ -236,11 +239,13 @@ backend:
   # -- Backend affinity for pod assignment.
   affinity: {}
 
+  # -- Backend environment variables for the container.
+  env: []
+
 # -- Settings are only required if you wish to use an existing postgresql instance
 psql:
   # host: postgresdb.local
   # port: 5432
-  # database: backstage
   # username: backstage
   # password:
   #   secret: backstage-postgres

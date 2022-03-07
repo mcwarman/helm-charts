@@ -71,6 +71,9 @@ spec:
                   name: {{ .Values.psql.password.secret }}
                   key: {{ .Values.psql.password.key }}
             {{- end }}
+            {{- with .Values.backend.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.appConfig.backend.listen.port | default 7007 }}

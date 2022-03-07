@@ -58,6 +58,9 @@ spec:
             - name: APP_CONFIG_organization_name
               value: {{ .Values.appConfig.organization.name | quote }}
             {{- end }}
+            {{- with .Values.app.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           ports:
             - name: http
               containerPort: 80

@@ -1,6 +1,6 @@
 # Backstage
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
 
 Helm chart for Backstage. Backstage is an open platform for building developer portals.
 
@@ -65,6 +65,7 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 | app.nodeSelector | object | `{}` | App node labels for pod assignment. |
 | app.tolerations | list | `[]` | App tolerations for pod assignment. |
 | app.affinity | object | `{}` | App affinity for pod assignment. |
+| app.env | list | `[]` | Frontend environment variables for the container. |
 | backend.image.repository | string | `"ghcr.io/mcwarman/backstage-sample-app/backend"` | Backend image repository. |
 | backend.image.tag | string | `""` |  |
 | backend.image.pullPolicy | string | `"IfNotPresent"` | Backend image pull policy. |
@@ -100,6 +101,7 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 | backend.nodeSelector | object | `{}` | Backend node labels for pod assignment. |
 | backend.tolerations | list | `[]` | Backend tolerations for pod assignment. |
 | backend.affinity | object | `{}` | Backend affinity for pod assignment. |
+| backend.env | list | `[]` | Backend environment variables for the container. |
 | psql | string | `nil` | Settings are only required if you wish to use an existing postgresql instance |
 | postgresql.enabled | bool | `false` | If `true`, executes subchart PostgreSQL from Bitnami, [reference](https://artifacthub.io/packages/helm/bitnami/postgresql). |
 | appConfig | object | see values.yaml | Backstage application config, [reference](https://backstage.io/docs/conf/writing). |
