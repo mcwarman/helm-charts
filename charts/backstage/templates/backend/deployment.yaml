@@ -11,8 +11,9 @@ spec:
       {{- include "backstage.backendSelectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.backend.podAnnotations }}
       annotations:
+        checksum/config: {{ .Values.appConfig | toYaml | sha256sum }}
+    {{- with .Values.backend.podAnnotations }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
