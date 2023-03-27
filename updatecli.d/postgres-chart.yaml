@@ -1,0 +1,51 @@
+name: PostgreSQL Chart
+sources:
+  latestRelease:
+    name: Get latest Bitnami PostgreSQL Chart
+    kind: helmchart
+    spec:
+      url: https://charts.bitnami.com/bitnami/
+      name: postgresql
+
+targets:
+  chart:
+    name: Bump Bitnami PostgreSQL Chart version
+    kind: helmchart
+    #scmid: default
+    spec:
+      name: "charts/backstage"
+      file: "Chart.yaml"
+      key: "dependencies[0].version"
+      versionincrement: none
+# targets:
+#   chart:
+#     name: Bump Bitnami PostgreSQL Chart version
+#     kind: yaml
+#     #scmid: default
+#     spec:
+#       file: "charts/backstage/Chart.yaml"
+#       key: "dependencies[0].version"
+# actions:
+#   default:
+#     title: '[updatecli] Bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
+#     kind: github/pullrequest
+#     spec:
+#       labels:
+#         - chore
+#     scmid: default
+
+# scms:
+#   default:
+#     kind: github
+#     spec:
+#       owner: mcwarman
+#       repository: helm-charts
+#       branch: main
+#       user: '{{ requiredEnv "UPDATECLI_GITHUB_USER" }}'
+#       email: '{{ requiredEnv "UPDATECLI_GITHUB_EMAIL" }}'
+#       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
+#       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
+#       commitmessage:
+#         title: '[updatecli] Bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
+#         hidecredit: true
+#     disabled: false
