@@ -7,45 +7,59 @@ sources:
       url: https://charts.bitnami.com/bitnami/
       name: postgresql
 
+conditions:
+  ensureDependenciesOrderName:
+    name: Ensure dependencies order - check name
+    disablesourceinput: true
+    kind: yaml
+    spec:
+      file: charts/backstage/Chart.yaml
+      key:  $.dependencies[0].name
+      value: postgresql
+  ensureDependenciesOrderRepository:
+    name: Ensure dependencies order - check repository
+    disablesourceinput: true
+    kind: yaml
+    spec:
+      file: charts/backstage/Chart.yaml
+      key:  $.dependencies[0].repository
+      value: https://charts.bitnami.com/bitnami/
+
 targets:
   chart:
-    name: Bump Bitnami PostgreSQL Chart version
+    name: 'Bump Bitnami PostgreSQL Chart version to to {{ source "latestRelease" }}'
     kind: helmchart
-    #scmid: default
+    scmid: default
     spec:
-      name: "charts/backstage"
-      file: "Chart.yaml"
-      key: "dependencies[0].version"
-      versionincrement: none
-# targets:
-#   chart:
-#     name: Bump Bitnami PostgreSQL Chart version
-#     kind: yaml
-#     #scmid: default
-#     spec:
-#       file: "charts/backstage/Chart.yaml"
-#       key: "dependencies[0].version"
-# actions:
-#   default:
-#     title: '[updatecli] Bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
-#     kind: github/pullrequest
-#     spec:
-#       labels:
-#         - chore
-#     scmid: default
+      name: charts/backstage
+      file: Chart.yaml
+      key: $.dependencies[0].version
+      versionincrement: minor
 
-# scms:
-#   default:
-#     kind: github
-#     spec:
-#       owner: mcwarman
-#       repository: helm-charts
-#       branch: main
-#       user: '{{ requiredEnv "UPDATECLI_GITHUB_USER" }}'
-#       email: '{{ requiredEnv "UPDATECLI_GITHUB_EMAIL" }}'
-#       username: '{{ requiredEnv "UPDATECLI_GITHUB_ACTOR" }}'
-#       token: '{{ requiredEnv "UPDATECLI_GITHUB_TOKEN" }}'
-#       commitmessage:
-#         title: '[updatecli] Bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
-#         hidecredit: true
-#     disabled: false
+scms:
+  default:
+    kind: github
+    spec:
+      owner: mcwarman
+      repository: helm-charts
+      branch: main
+      user: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      email: '{{ requiredEnv "GITHUB_EMAIL" }}'
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      commitmessage:
+        type: build
+        scope: deps
+        title: 'bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
+        hidecredit: true
+    disabled: false
+
+actions:
+  default:
+    title: 'build(deps): bump Bitnami PostgreSQL Chart version to {{ source "latestRelease" }}'
+    kind: github/pullrequest
+    spec:
+      mergemethod: squash
+      labels:
+        - dependencies
+    scmid: default
