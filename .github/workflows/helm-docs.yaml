@@ -1,0 +1,65 @@
+name: Helm Docs Update
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "charts/**"
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  helm-docs:
+    name: Helm Docs Update
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Generate GitHub app token
+        id: github-app-token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.GH_CONTENT_APP_ID }}
+          private_key: ${{ secrets.GH_CONTENT_APP_PEM_FILE }}
+
+      - name: Install helm-docs
+        uses: action-stars/install-tool-from-github-release@v0.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: norwoodj
+          repository: helm-docs
+          arch_amd64: x86_64
+          check_command: helm-docs --version
+          version: latest
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ steps.github-app-token.outputs.token }}
+
+      - name: Run helm-docs
+        run: |
+          make docs
+
+      - name: Commit and Push
+        env:
+          GH_USER_NAME: mcwarman[bot]
+          GH_USER_EMAIL: 137313888+mcwarman[bot]@users.noreply.github.com
+        run: |
+          shopt -s globstar
+          for file in charts/**/README.md; do
+            git add -- "$file"
+          done
+          if [ -n "$(git diff --staged)" ]; then
+            git config user.name  "${GH_USER_NAME}"
+            git config user.email "${GH_USER_EMAIL}"
+            git commit --fixup HEAD -m "docs: helm-docs"
+            git push
+          fi
