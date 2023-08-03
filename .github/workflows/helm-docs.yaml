@@ -60,6 +60,6 @@ jobs:
           if [ -n "$(git diff --staged)" ]; then
             git config user.name  "${GH_USER_NAME}"
             git config user.email "${GH_USER_EMAIL}"
-            git commit -m "fixup! docs: helm-docs"
+            git commit --fixup HEAD -m "docs: helm-docs"
             git push
           fi
