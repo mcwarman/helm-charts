@@ -1,6 +1,7 @@
 name: GitHub Workflow Test
 
 on:
+  workflow_dispatch:
   pull_request:
     paths:
       - ".github/workflows/workflow-test.yaml"
@@ -28,8 +29,14 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.4.0
 
+      - name: Set up helm unittest
+        run: helm plugin install https://github.com/helm-unittest/helm-unittest
+
       - name: Run chart-testing (lint)
         run: ct lint --all --config ct.yaml
+
+      - name: Run helm unittest
+        run: echo charts/*/ | xargs -L 1 helm unittest --strict
 
       - name: Create Kind cluster
         uses: helm/kind-action@v1.8.0

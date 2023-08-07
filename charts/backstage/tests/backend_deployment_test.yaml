@@ -12,4 +12,4 @@ tests:
       - isAPIVersion:
           of: apps/v1
       - isNotEmpty:
-          path: spec.template.metadata.annotations.[checksum/config]
+          path: spec.template.metadata.annotations["checksum/config"]
