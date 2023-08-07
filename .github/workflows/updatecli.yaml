@@ -32,5 +32,5 @@ jobs:
         run: updatecli apply
         env:
           GITHUB_USERNAME: mcwarman-updatecli[bot]
-          GITHUB_EMAIL: 137313888+mcwarman-updatecli[bot]@users.noreply.github.com
+          GITHUB_EMAIL: 141340520+mcwarman-updatecli[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
