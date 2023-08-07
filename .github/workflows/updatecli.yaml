@@ -25,12 +25,12 @@ jobs:
         id: github-app-token
         uses: tibdex/github-app-token@v1
         with:
-          app_id: ${{ secrets.GH_CONTENT_APP_ID }}
-          private_key: ${{ secrets.GH_CONTENT_APP_PEM_FILE }}
+          app_id: ${{ secrets.GH_UPDATECLI_APP_ID }}
+          private_key: ${{ secrets.GH_UPDATECLI_APP_PEM_FILE }}
 
       - name: Run Updatecli
         run: updatecli apply
         env:
-          GITHUB_USERNAME: mcwarman[bot]
-          GITHUB_EMAIL: 137313888+mcwarman[bot]@users.noreply.github.com
+          GITHUB_USERNAME: mcwarman-updatecli[bot]
+          GITHUB_EMAIL: 137313888+mcwarman-updatecli[bot]@users.noreply.github.com
           GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
