@@ -1,6 +1,6 @@
 # Backstage
 
-![Version: 0.8.5](https://img.shields.io/badge/Version-0.8.5-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
+![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: main](https://img.shields.io/badge/AppVersion-main-informational?style=flat-square)
 
 Helm chart for Backstage. Backstage is an open platform for building developer portals.
 
@@ -22,7 +22,7 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami/ | postgresql | 12.9.0 |
+| https://charts.bitnami.com/bitnami/ | postgresql | 12.10.0 |
 
 ## Values
 
