@@ -32,7 +32,7 @@ jobs:
           private_key: ${{ secrets.GH_UPDATECLI_APP_PEM_FILE }}
 
       - name: Run Updatecli
-        run: updatecli apply
+        run: updatecli apply --experimental
         env:
           GITHUB_USERNAME: mcwarman-updatecli[bot]
           GITHUB_EMAIL: 141340520+mcwarman-updatecli[bot]@users.noreply.github.com
