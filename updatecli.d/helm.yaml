@@ -1,0 +1,32 @@
+name: Helm Auto Discovery
+
+autodiscovery:
+  scmid: default
+  crawlers:
+    helm: {}
+
+scms:
+  default:
+    kind: github
+    spec:
+      owner: mcwarman
+      repository: helm-charts
+      branch: main
+      user: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      email: '{{ requiredEnv "GITHUB_EMAIL" }}'
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      commitmessage:
+        type: build
+        scope: deps
+        hidecredit: true
+    disabled: false
+
+actions:
+  default:
+    kind: github/pullrequest
+    spec:
+      mergemethod: squash
+      labels:
+        - dependencies
+    scmid: default
