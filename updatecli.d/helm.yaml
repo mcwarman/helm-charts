@@ -2,6 +2,7 @@ name: Helm Auto Discovery
 
 autodiscovery:
   scmid: default
+  actionid: default
   crawlers:
     helm: {}
 
