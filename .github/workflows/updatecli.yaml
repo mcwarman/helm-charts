@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate GitHub app token
         id: github-app-token
-        uses: tibdex/github-app-token@v1
+        uses: tibdex/github-app-token@v2
         with:
           app_id: ${{ secrets.GH_UPDATECLI_APP_ID }}
           private_key: ${{ secrets.GH_UPDATECLI_APP_PEM_FILE }}
