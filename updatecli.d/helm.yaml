@@ -4,7 +4,8 @@ autodiscovery:
   scmid: default
   actionid: default
   crawlers:
-    helm: {}
+    helm:
+      versionincrement: auto
 
 scms:
   default:
