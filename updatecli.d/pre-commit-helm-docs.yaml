@@ -1,0 +1,59 @@
+name: pre-commit Terraform
+
+sources:
+  latestRelease:
+    name: Get latest pre-commit helm-docs release
+    kind: githubrelease
+    spec:
+      owner: norwoodj
+      repository: helm-docs
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      versionfilter:
+        kind: semver
+
+conditions:
+  ensurePreCommitOrder:
+    name: Ensure pre-commit repo order
+    disablesourceinput: true
+    kind: yaml
+    spec:
+      file: .pre-commit-config.yaml
+      key: repos[0].repo
+      value: https://github.com/norwoodj/helm-docs
+
+targets:
+  preCommitConfig:
+    kind: yaml
+    name: Bump pre-commit helm-docs to {{ source "latestRelease" }}
+    sourceid: latestRelease
+    scmid: default
+    spec:
+      file: .pre-commit-config.yaml
+      key: repos[0].rev
+
+scms:
+  default:
+    kind: github
+    spec:
+      owner: mcwarman
+      repository: helm-charts
+      branch: main
+      user: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      email: '{{ requiredEnv "GITHUB_EMAIL" }}'
+      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
+      username: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      commitmessage:
+        type: build
+        scope: deps
+        title: 'bump pre-commit helm-docs to {{ source "latestRelease" }}'
+        hidecredit: true
+
+actions:
+  default:
+    title: 'build(deps): bump pre-commit helm-docs to {{ source "latestRelease" }}'
+    kind: github/pullrequest
+    spec:
+      mergemethod: squash
+      labels:
+        - dependencies
+    scmid: default
