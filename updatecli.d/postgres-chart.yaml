@@ -36,6 +36,17 @@ targets:
       file: Chart.yaml
       key: $.dependencies[0].version
       versionincrement: auto
+  readme:
+    name: Update chart helm-docs
+    kind: shell
+    scmid: default
+    disablesourceinput: true
+    spec:
+      command: make docs
+      environments:
+        - name: PATH
+    dependson:
+      - chart
 
 scms:
   default:

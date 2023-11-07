@@ -24,6 +24,16 @@ jobs:
       - name: Setup updatecli
         uses: updatecli/updatecli-action@v2
 
+      - name: Setup helm-docs
+        uses: action-stars/install-tool-from-github-release@v0.2.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          owner: norwoodj
+          repository: helm-docs
+          arch_amd64: x86_64
+          check_command: helm-docs --version
+          version: latest
+
       - name: Generate GitHub app token
         id: github-app-token
         uses: tibdex/github-app-token@v2
