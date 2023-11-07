@@ -28,12 +28,13 @@ jobs:
           app_id: ${{ secrets.GH_CONTENT_APP_ID }}
           private_key: ${{ secrets.GH_CONTENT_APP_PEM_FILE }}
 
-      - name: Install helm-docs
+      - name: Setup helm-docs
         uses: action-stars/install-tool-from-github-release@v0.2.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: norwoodj
           repository: helm-docs
+          os_linux: Linux
           arch_amd64: x86_64
           check_command: helm-docs --version
           version: latest

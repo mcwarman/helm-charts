@@ -30,6 +30,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: norwoodj
           repository: helm-docs
+          os_linux: Linux
           arch_amd64: x86_64
           check_command: helm-docs --version
           version: latest
