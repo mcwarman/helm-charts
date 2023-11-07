@@ -45,6 +45,11 @@ targets:
       command: make docs
       environments:
         - name: PATH
+      changedif:
+        kind: file/checksum
+        spec:
+          files:
+            - charts/backstage/README.md
     dependson:
       - chart
 
