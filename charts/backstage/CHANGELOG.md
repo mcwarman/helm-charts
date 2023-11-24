@@ -15,6 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Update missed changelog entries (#87)
+
+## 0.10.3 - 2023-11-24
+
+### Changed
+
 - Bump sub chart bitnami/postgresql chart version to 13.2.16
 
 ## 0.10.2 - 2023-11-20
