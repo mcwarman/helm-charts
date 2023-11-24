@@ -1,3 +1,5 @@
+# {{ $scmEnabled := env "GITHUB_REPOSITORY"}}
+
 name: PostgreSQL Chart
 
 sources:
@@ -28,9 +30,11 @@ conditions:
 
 targets:
   chart:
-    name: 'Bump bitnami/postgresql chart version to to {{ source "latestRelease" }}'
+    name: 'Bump sub chart bitnami/postgresql chart version to to {{ source "latestRelease" }}'
     kind: helmchart
+    # {{ if $scmEnabled }}
     scmid: default
+    # {{ end }}
     spec:
       name: charts/backstage
       file: Chart.yaml
@@ -39,7 +43,9 @@ targets:
   readme:
     name: Update chart helm-docs
     kind: shell
+    # {{ if $scmEnabled }}
     scmid: default
+    # {{ end }}
     disablesourceinput: true
     spec:
       command: make docs
@@ -52,31 +58,51 @@ targets:
             - charts/backstage/README.md
     dependson:
       - chart
+  changelog:
+    name: Update changelog
+    kind: shell
+    # {{ if $scmEnabled }}
+    scmid: default
+    # {{ end }}
+    disablesourceinput: true
+    spec:
+      command: make changelog-backstage
+      environments:
+        - name: PATH
+      changedif:
+        kind: file/checksum
+        spec:
+          files:
+            - charts/backstage/CHANGELOG.md
+    dependson:
+      - chart
 
+# {{ if $scmEnabled }}
 scms:
   default:
     kind: github
     spec:
-      owner: mcwarman
-      repository: helm-charts
+      owner: '{{ env "GITHUB_OWNER" }}'
+      repository: '{{ env "GITHUB_REPOSITORY" }}'
       branch: main
-      user: '{{ requiredEnv "GITHUB_USERNAME" }}'
-      email: '{{ requiredEnv "GITHUB_EMAIL" }}'
-      token: '{{ requiredEnv "GITHUB_TOKEN" }}'
-      username: '{{ requiredEnv "GITHUB_USERNAME" }}'
+      user: '{{ env "GITHUB_USERNAME" }}'
+      email: '{{ env "GITHUB_EMAIL" }}'
+      token: '{{ env "GITHUB_TOKEN" }}'
+      username: '{{ env "GITHUB_USERNAME" }}'
       commitmessage:
         type: build
         scope: deps
-        title: 'bump bitnami/postgresql chart version to {{ source "latestRelease" }}'
+        title: 'bump sub chart bitnami/postgresql chart version to {{ source "latestRelease" }}'
         hidecredit: true
     disabled: false
 
 actions:
   default:
-    title: 'build(deps): bump bitnami/postgresql chart version to {{ source "latestRelease" }}'
+    title: 'build(deps): bump sub chart bitnami/postgresql chart version to {{ source "latestRelease" }}'
     kind: github/pullrequest
     spec:
       mergemethod: squash
       labels:
         - dependencies
     scmid: default
+# {{ end }}
