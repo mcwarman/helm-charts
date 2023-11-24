@@ -18,7 +18,7 @@ conditions:
     kind: yaml
     spec:
       file: .pre-commit-config.yaml
-      key: repos[0].repo
+      key: $.repos[0].repo
       value: https://github.com/norwoodj/helm-docs
 
 targets:
@@ -29,7 +29,7 @@ targets:
     scmid: default
     spec:
       file: .pre-commit-config.yaml
-      key: repos[0].rev
+      key: $.repos[0].rev
 
 scms:
   default:
