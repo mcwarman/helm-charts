@@ -1,4 +1,4 @@
-# {{ $scmEnabled := env "GITHUB_REPOSITORY"}}
+# {{ $scmEnabled := and (env "GITHUB_REPOSITORY_OWNER") (env "GITHUB_REPOSITORY_NAME") }}
 
 name: PostgreSQL Chart
 
@@ -82,8 +82,8 @@ scms:
   default:
     kind: github
     spec:
-      owner: '{{ env "GITHUB_OWNER" }}'
-      repository: '{{ env "GITHUB_REPOSITORY" }}'
+      owner: '{{ env "GITHUB_REPOSITORY_OWNER" }}'
+      repository: '{{ env "GITHUB_REPOSITORY_NAME" }}'
       branch: main
       user: '{{ env "GITHUB_USERNAME" }}'
       email: '{{ env "GITHUB_EMAIL" }}'
