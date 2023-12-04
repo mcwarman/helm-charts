@@ -2,6 +2,9 @@
 
 name: PostgreSQL Chart
 
+# Represent the minimum version of Updatecli required to run this policy
+version: v0.68.0
+
 sources:
   latestRelease:
     name: Get latest bitnami/postgresql chart
@@ -40,26 +43,8 @@ targets:
       file: Chart.yaml
       key: $.dependencies[0].version
       versionincrement: auto
-  readme:
-    name: Update chart helm-docs
-    kind: shell
-    # {{ if $scmEnabled }}
-    scmid: default
-    # {{ end }}
-    disablesourceinput: true
-    spec:
-      command: make docs
-      environments:
-        - name: PATH
-      changedif:
-        kind: file/checksum
-        spec:
-          files:
-            - charts/backstage/README.md
-    dependson:
-      - chart
   changelog:
-    name: Update changelog
+    name: 'Update changelog with {{ source "latestRelease" }}'
     kind: shell
     # {{ if $scmEnabled }}
     scmid: default
@@ -76,6 +61,27 @@ targets:
             - charts/backstage/CHANGELOG.md
     dependson:
       - chart
+    dependsonchange: true
+  readme:
+    name: 'Update chart helm-docs with {{ source "latestRelease" }}'
+    kind: shell
+    # {{ if $scmEnabled }}
+    scmid: default
+    # {{ end }}
+    disablesourceinput: true
+    spec:
+      command: make docs
+      environments:
+        - name: PATH
+      changedif:
+        kind: file/checksum
+        spec:
+          files:
+            - charts/backstage/README.md
+    dependson:
+      - chart
+      - changelog
+    dependsonchange: true
 
 # {{ if $scmEnabled }}
 scms:
