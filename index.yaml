@@ -3,6 +3,33 @@ entries:
   backstage:
   - apiVersion: v2
     appVersion: main
+    created: "2023-12-21T09:01:20.081074329Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami/
+      version: 13.2.25
+    description: Helm chart for Backstage. Backstage is an open platform for building
+      developer portals.
+    digest: 9f01e68923e9ac96798e2eff7506a9710337272665fa3604379e9f1b2d84d6ec
+    home: https://backstage.io
+    icon: https://backstage.io/img/twitter-summary.png
+    keywords:
+    - backstage
+    maintainers:
+    - email: mcwarman@gmail.com
+      name: mcwarman
+    name: backstage
+    sources:
+    - https://github.com/backstage/backstage
+    - https://github.com/mcwarman/backstage-sample-app
+    - https://github.com/mcwarman/helm-charts
+    type: application
+    urls:
+    - https://github.com/mcwarman/helm-charts/releases/download/backstage-0.10.8/backstage-0.10.8.tgz
+    version: 0.10.8
+  - apiVersion: v2
+    appVersion: main
     created: "2023-12-07T10:52:27.430680914Z"
     dependencies:
     - condition: postgresql.enabled
@@ -674,4 +701,4 @@ entries:
     urls:
     - https://github.com/mcwarman/helm-charts/releases/download/backstage-0.1.0/backstage-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-07T10:52:27.430837767Z"
+generated: "2023-12-21T09:01:20.081286224Z"
