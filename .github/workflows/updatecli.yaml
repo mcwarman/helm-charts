@@ -35,19 +35,6 @@ jobs:
           check_command: helm-docs --version
           version: latest
 
-      - name: Setup git-cliff
-        uses: action-stars/install-tool-from-github-release@v0.2.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          owner: orhun
-          repository: git-cliff
-          os_linux: unknown-linux-musl
-          arch_amd64: x86_64
-          check_command: git-cliff --version
-          subdirectory: "{name}-{version}"
-          filename_format: "{name}-{version}-{arch}-{os}.{ext}"
-          version: latest
-
       - name: Generate GitHub app token
         id: github-app-token
         uses: tibdex/github-app-token@v2
@@ -56,7 +43,7 @@ jobs:
           private_key: ${{ secrets.GH_UPDATECLI_APP_PEM_FILE }}
 
       - name: Run Updatecli
-        run: updatecli apply --experimental
+        run: updatecli apply --experimental --config ./updatecli
         env:
           GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
           GITHUB_REPOSITORY_NAME: ${{ github.event.repository.name }}
