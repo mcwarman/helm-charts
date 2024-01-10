@@ -2,7 +2,7 @@ apiVersion: v2
 name: backstage
 description: Helm chart for Backstage. Backstage is an open platform for building developer portals.
 type: application
-version: 0.10.9
+version: 0.10.10
 appVersion: main
 keywords:
   - backstage
@@ -17,6 +17,6 @@ maintainers:
     email: mcwarman@gmail.com
 dependencies:
   - name: postgresql
-    version: 13.2.27
+    version: 13.2.28
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
