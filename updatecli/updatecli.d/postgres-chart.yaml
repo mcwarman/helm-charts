@@ -51,8 +51,7 @@ targets:
     # {{ end }}
     disablesourceinput: true
     spec:
-      # version appended as last argument
-      command: bash ./updatecli/update-changelog.sh "charts/backstage" "Bump sub chart bitnami/postgresql chart version to %s"
+      command: bash ./updatecli/update-changelog.sh "charts/backstage" "Bump sub chart bitnami/postgresql chart version to %s" '{{ source "latestRelease" }}'
       environments:
         - name: PATH
       changedif:
