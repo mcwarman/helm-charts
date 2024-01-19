@@ -42,7 +42,7 @@ targets:
       name: charts/backstage
       file: Chart.yaml
       key: $.dependencies[0].version
-      versionincrement: auto
+      versionincrement: patch
   changelog:
     name: 'Update changelog with {{ source "latestRelease" }}'
     kind: shell
