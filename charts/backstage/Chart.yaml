@@ -17,6 +17,6 @@ maintainers:
     email: mcwarman@gmail.com
 dependencies:
   - name: postgresql
-    version: 13.4.4
+    version: 14.0.0
     repository: https://charts.bitnami.com/bitnami/
     condition: postgresql.enabled
