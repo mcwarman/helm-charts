@@ -11,11 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed -->
 
-## 0.10.11 - 2024-02-02
+## 0.10.11 - 2024-02-03
 
 ### Changed
 
-- Bump sub chart bitnami/postgresql chart version to [14.0.0](https://artifacthub.io/packages/helm/bitnami/postgresql/14.0.0)
+- Bump sub chart bitnami/postgresql chart version to [14.0.1](https://artifacthub.io/packages/helm/bitnami/postgresql/14.0.1)
 
 ## 0.10.10 - 2024-01-19
 
