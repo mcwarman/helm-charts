@@ -1,3 +1,4 @@
+# {{ $scmEnabled := and (env "GITHUB_REPOSITORY_OWNER") (env "GITHUB_REPOSITORY_NAME") }}
 name: pre-commit Terraform
 
 sources:
@@ -15,6 +16,9 @@ conditions:
   ensurePreCommitOrder:
     name: Ensure pre-commit repo order
     disablesourceinput: true
+    # {{ if $scmEnabled }}
+    scmid: default
+    # {{ end }}
     kind: yaml
     spec:
       file: .pre-commit-config.yaml
@@ -26,11 +30,14 @@ targets:
     kind: yaml
     name: Bump pre-commit helm-docs to {{ source "latestRelease" }}
     sourceid: latestRelease
+    # {{ if $scmEnabled }}
     scmid: default
+    # {{ end }}
     spec:
       file: .pre-commit-config.yaml
       key: $.repos[0].rev
 
+# {{ if $scmEnabled }}
 scms:
   default:
     kind: github
@@ -57,3 +64,4 @@ actions:
       labels:
         - dependencies
     scmid: default
+# {{ end }}
