@@ -25,7 +25,7 @@ jobs:
         uses: updatecli/updatecli-action@v2
 
       - name: Setup helm-docs
-        uses: action-stars/install-tool-from-github-release@v0.2.2
+        uses: action-stars/install-tool-from-github-release@v0.2.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           owner: norwoodj
