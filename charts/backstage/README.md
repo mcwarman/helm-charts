@@ -22,7 +22,7 @@ helm upgrade --install --namespace default --values ./my-values.yaml my-release 
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami/ | postgresql | 18.1.14 |
+| https://charts.bitnami.com/bitnami/ | postgresql | 18.1.15 |
 
 ## Values
 
