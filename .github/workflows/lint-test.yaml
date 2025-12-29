@@ -42,7 +42,7 @@ jobs:
         uses: helm/chart-testing-action@v2.7.0
 
       - name: Set up helm unittest
-        run: helm plugin install https://github.com/helm-unittest/helm-unittest
+        run: helm plugin install https://github.com/helm-unittest/helm-unittest --verify=false
 
       - name: Run chart-testing (list-changed)
         id: list-changed
