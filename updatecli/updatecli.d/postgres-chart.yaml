@@ -12,6 +12,9 @@ sources:
     spec:
       url: https://charts.bitnami.com/bitnami/
       name: postgresql
+      versionFilter:
+        kind: semver
+        pattern: 13.x
 
 conditions:
   ensureDependenciesOrderName:
