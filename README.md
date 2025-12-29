@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This project is archived and no longer maintained
+
 # mcwarman Helm Charts
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT) [![Pipeline Status](https://github.com/mcwarman/helm-charts/workflows/Release%20Charts/badge.svg?branch=main)](https://github.com/mcwarman/helm-charts/actions) [![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/mcwarman)](https://artifacthub.io/packages/search?repo=mcwarman)
